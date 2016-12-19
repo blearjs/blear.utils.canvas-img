@@ -1,6 +1,6 @@
 {
   "name": "blear.utils.canvas-img",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "画布图片工具函数",
   "scripts": {
     "live": "browser-sync start --config bs-config.js"
@@ -34,11 +34,11 @@
   "bugs": {
     "url": "https://github.com/blearjs/blear.utils.canvas-img/issues"
   },
-  "dependencies": {},
-  "peerDependencies": {
+  "dependencies": {
     "blear.utils.object": "1.x",
     "blear.utils.typeis": "1.x"
   },
+  "peerDependencies": {},
   "devDependencies": {},
   "license": "MIT"
 }
