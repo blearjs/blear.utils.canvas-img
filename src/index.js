@@ -69,10 +69,23 @@ exports.draw = function (canvasEl, imgEl, options) {
         options.drawHeight = options.srcHeight;
     }
 
-    options.srcLeft = Math.max(options.srcLeft, 0);
-    options.srcTop = Math.max(options.srcTop, 0);
+    var srcLeft = options.srcLeft;
+    var srcTop = options.srcTop;
+    var deltaLeft = 0;
+    var deltaTop = 0;
+
+    if (srcLeft < 0) {
+        deltaLeft = -srcLeft;
+        srcLeft = 0;
+    }
+
+    if (srcTop < 0) {
+        deltaTop = -srcTop;
+        srcTop = 0;
+    }
+
     context.drawImage(imgEl,
-        options.srcLeft, options.srcTop, options.srcWidth, options.srcHeight,
-        options.drawLeft, options.drawTop, options.drawWidth, options.drawHeight);
+        srcLeft, srcTop, options.srcWidth, options.srcHeight,
+        options.drawLeft + deltaLeft, options.drawTop + deltaTop, options.drawWidth - deltaLeft, options.drawHeight - deltaTop);
 };
 
