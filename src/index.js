@@ -76,7 +76,7 @@ exports.draw = function (canvasEl, imgEl, options) {
         drawHeight = options.srcHeight;
     }
 
-    if (srcLeft < 0 || srcTop) {
+    if (srcLeft < 0 || srcTop < 0) {
         throw new Error('`srcLeft` 或 `srcTop` 不能小于 0');
     }
 
