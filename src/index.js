@@ -29,7 +29,7 @@ var isEmpty = function (o) {
 /**
  * 绘制图像
  * @param canvasEl {Object} 画布
- * @param imgEl {Object} 图片对象，必须保证图片已经 onload 了
+ * @param imgEl {HTMLImageElement} 图片对象，必须保证图片已经 onload 了
  * @param [options] {Object} 配置
  * @param [options.srcLeft] {Number} 源横坐标
  * @param [options.srcTop] {Number} 源纵坐标
@@ -41,51 +41,47 @@ var isEmpty = function (o) {
  * @param [options.drawHeight] {Number} 绘制高度
  */
 exports.draw = function (canvasEl, imgEl, options) {
-    var context = canvasEl.getContext('2d');
-
     options = object.assign({}, defaults, options);
-
-    if (isEmpty(options.srcWidth)) {
-        options.srcWidth = imgEl.width;
-    }
-
-    if (isEmpty(options.srcHeight)) {
-        options.srcHeight = imgEl.height;
-    }
-
-    if (isEmpty(options.drawLeft)) {
-        options.drawLeft = 0;
-    }
-
-    if (isEmpty(options.drawTop)) {
-        options.drawTop = 0;
-    }
-
-    if (isEmpty(options.drawWidth)) {
-        options.drawWidth = options.srcWidth;
-    }
-
-    if (isEmpty(options.drawHeight)) {
-        options.drawHeight = options.srcHeight;
-    }
-
+    var context = canvasEl.getContext('2d');
     var srcLeft = options.srcLeft;
     var srcTop = options.srcTop;
-    var deltaLeft = 0;
-    var deltaTop = 0;
+    var srcWidth = options.srcWidth;
+    var srcHeight = options.srcHeight;
+    var drawLeft = options.drawLeft;
+    var drawTop = options.drawTop;
+    var drawWidth = options.drawWidth;
+    var drawHeight = options.drawHeight;
 
-    if (srcLeft < 0) {
-        deltaLeft = -srcLeft;
-        srcLeft = 0;
+    if (isEmpty(srcWidth)) {
+        srcWidth = imgEl.width;
     }
 
-    if (srcTop < 0) {
-        deltaTop = -srcTop;
-        srcTop = 0;
+    if (isEmpty(srcHeight)) {
+        srcHeight = imgEl.height;
+    }
+
+    if (isEmpty(drawLeft)) {
+        drawLeft = 0;
+    }
+
+    if (isEmpty(drawTop)) {
+        drawTop = 0;
+    }
+
+    if (isEmpty(drawWidth)) {
+        drawWidth = srcWidth;
+    }
+
+    if (isEmpty(drawHeight)) {
+        drawHeight = options.srcHeight;
+    }
+
+    if (srcLeft < 0 || srcTop) {
+        throw new Error('`srcLeft` 或 `srcTop` 不能小于 0');
     }
 
     context.drawImage(imgEl,
-        srcLeft, srcTop, options.srcWidth, options.srcHeight,
-        options.drawLeft + deltaLeft, options.drawTop + deltaTop, options.drawWidth - deltaLeft, options.drawHeight - deltaTop);
+        srcLeft, srcTop, srcWidth, srcHeight,
+        drawLeft, drawTop, drawWidth, drawHeight);
 };
 
