@@ -16,6 +16,8 @@ var rotate1El = document.getElementById('rotate1');
 var rotate2El = document.getElementById('rotate2');
 var rotate3El = document.getElementById('rotate3');
 var rotate4El = document.getElementById('rotate4');
+var flip1El = document.getElementById('flip1');
+var flip2El = document.getElementById('flip2');
 
 
 drawEl.onclick = function () {
@@ -42,7 +44,7 @@ drawEl.onclick = function () {
     };
 
     rotate1El.onclick = function () {
-        canvasImg.orientate(canvasEl, 90, true);
+        canvasImg.orientate(canvasEl, 90);
     };
 
     rotate2El.onclick = function () {
@@ -55,5 +57,13 @@ drawEl.onclick = function () {
 
     rotate4El.onclick = function () {
         canvasImg.orientate(canvasEl, -90);
+    };
+
+    flip1El.onclick = function () {
+        canvasImg.flip(canvasEl);
+    };
+
+    flip2El.onclick = function () {
+        canvasImg.flip(canvasEl, true);
     };
 };

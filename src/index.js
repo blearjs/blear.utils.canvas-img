@@ -26,7 +26,7 @@ var isEmpty = function (o) {
     return typeis.Null(o) || typeis.Undefined(o);
 };
 var tempCanvasEl = document.createElement('canvas');
-
+// document.body.appendChild(tempCanvasEl);
 
 /**
  * 绘制图像
@@ -160,5 +160,44 @@ exports.orientate = function (canvasEl, angle, unResize) {
     draw(canvasEl, tempCanvasEl, {
         srcWidth: actualWidth,
         srcHeight: actualHeight
+    });
+};
+
+
+/**
+ * 翻转
+ * @param canvasEl {HTMLCanvasElement} 画布
+ * @param [vertical=false] {boolean} 是否垂直翻转，默认水平方向
+ */
+exports.flip = function (canvasEl, vertical) {
+    var context = tempCanvasEl.getContext('2d');
+    var width = canvasEl.width;
+    var height = canvasEl.height;
+    var scaleX = 1;
+    var scaleY = 1;
+    var translateX = 0;
+    var translateY = 0;
+
+    if(vertical) {
+        translateY = height;
+        scaleY = -1;
+    } else {
+        translateX = width;
+        scaleX = -1;
+    }
+
+    tempCanvasEl.width = width;
+    tempCanvasEl.height = height;
+    context.save();
+    context.translate(translateX, translateY);
+    context.scale(scaleX, scaleY);
+    draw(tempCanvasEl, canvasEl, {
+        srcWidth: width,
+        srcHeight: height
+    });
+    context.restore();
+    draw(canvasEl, tempCanvasEl, {
+        srcWidth: width,
+        srcHeight: height
     });
 };
