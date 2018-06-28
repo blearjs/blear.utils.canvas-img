@@ -109,8 +109,6 @@ exports.orientate = function (canvasEl, angle, unResize) {
     var context = tempCanvasEl.getContext('2d');
     var actualWidth = 0;
     var actualHeight = 0;
-    var drawWidth = 0;
-    var drawHeight = 0;
 
     switch (angle) {
         case 0:
@@ -152,7 +150,9 @@ exports.orientate = function (canvasEl, angle, unResize) {
     });
     context.restore();
 
-    if (!unResize) {
+    if (unResize) {
+        canvasEl.width = srcWidth;
+    } else {
         canvasEl.width = actualWidth;
         canvasEl.height = actualHeight;
     }

@@ -1,6 +1,6 @@
 {
   "name": "blear.utils.canvas-img",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "画布图片工具函数",
   "scripts": {
     "live": "browser-sync start --config bs-config.js"

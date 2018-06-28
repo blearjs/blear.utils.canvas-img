@@ -42,7 +42,7 @@ drawEl.onclick = function () {
     };
 
     rotate1El.onclick = function () {
-        canvasImg.orientate(canvasEl, 90);
+        canvasImg.orientate(canvasEl, 90, true);
     };
 
     rotate2El.onclick = function () {
