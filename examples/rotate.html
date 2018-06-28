@@ -35,16 +35,19 @@
     </style>
 </head>
 <body ontouchstart="">
-<h3>图片左边、上边留白绘制到 400*400 的画布上</h3>
-<canvas id="canvas" width="400" height="400">画布</canvas>
-<hr>
-<input type="text" name="url" id="url" placeholder="图片地址">
-<button id="draw">绘制</button>
 
+<input type="text" name="url" id="url" placeholder="图片地址" value="https://ws1.sinaimg.cn/large/4c0ca11fgy1fsr3h6i7pij206807yjrp.jpg">
+<button id="draw">绘制</button>
+<button id="rotate1">旋转 +90°</button>
+<button id="rotate2">旋转 +180°</button>
+<button id="rotate3">旋转 +270°</button>
+<button id="rotate4">旋转 -90°</button>
+<hr>
+<canvas id="canvas">画布</canvas>
 
 <script src="/node_modules/coolie.js/coolie.js"
         data-config="/examples/coolie-config.js"
-        data-main="blank.js"></script>
+        data-main="rotate.js"></script>
 
 </body>
 </html>
